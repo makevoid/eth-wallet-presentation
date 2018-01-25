@@ -179,8 +179,9 @@ http://web3js.readthedocs.io/en/1.0/web3.html
 ```sh
 npm init -fy
 
-npm i --save      web3-eth-accounts
-npm i --save      isomorphic-fetch es6-promise
+npm i --save web3-eth-accounts
+npm i --save isomorphic-fetch
+npm i --save isomorphic-form-data
 ```
 
 optional:
@@ -483,26 +484,80 @@ const createTx = async ({recipient, account, value}) => {
 
 # Broadcast Transaction
 
-&nbsp;
+```js
+require('isomorphic-fetch')
+require('isomorphic-form-data')
 
+const broadcastTransaction = async (rawTx) => {
+  const broadcastUrl = "https://api.etherscan.io/api"
+
+  // ...
+}
+```
+
+
+---
+
+
+# Broadcast Transaction
 
 ```js
 const broadcastTransaction = async (rawTx) => {
   const broadcastUrl = "https://api.etherscan.io/api"
-
   const data = new FormData()
   data.append('module', 'proxy')
   data.append('action', 'eth_sendRawTransaction')
   data.append('hex', rawTx)
-  data.append('apikey', '3DQFQQZ51G4M18SW8RDKHIMERD79GYTVEA') // TODO: please fork and use your own APi key
-
+  data.append('apikey', '3DQFQQZ51G4M18SW8RDKHIMERD79GYTVEA') // please use your own api key
   let resp = await fetch(broadcastUrl, {
     method: "post",
     body: data,
   })
   resp = await resp.json()
-  c.log("etherscan broadcast:", resp)
+  c.log("broadcast Tx:", resp)
+  return resp
+}
+```
 
+
+---
+
+
+# Broadcast Transaction
+
+```js
+// ...
+
+(async () => {
+  const rawTx = "0xf86a0285012a05f20082520894d9ddf72ef671261cb2266b9d924c5980c5186699865af3107a40008026a0824d7b8b937437feff4ab206a556d599a70ce150ecc6ceeee7174bb5c679e0cea0643e49ae4bb8aae422245b6837997cff4a03714088043afc83deabf03043f253"
+
+  await broadcastTransaction(rawTx)
+})()
+
+```
+
+---
+
+
+For reference:
+
+```js
+require('isomorphic-fetch')
+require('isomorphic-form-data')
+
+const broadcastTransaction = async (rawTx) => {
+  const broadcastUrl = "https://api.etherscan.io/api"
+  const data = new FormData()
+  data.append('module', 'proxy')
+  data.append('action', 'eth_sendRawTransaction')
+  data.append('hex', rawTx)
+  data.append('apikey', '3DQFQQZ51G4M18SW8RDKHIMERD79GYTVEA') // please use your own api key
+  let resp = await fetch(broadcastUrl, {
+    method: "post",
+    body: data,
+  })
+  resp = await resp.json()
+  c.log("broadcast Tx:", resp)
   return resp
 }
 
@@ -512,182 +567,6 @@ const broadcastTransaction = async (rawTx) => {
 
   await broadcastTransaction(rawTx)
 })()
-```
-
-
----
-
-# Title
-
-&nbsp;
-
-```js
-
-```
-
-
----
-
-# Title
-
-&nbsp;
-
-```js
-
-```
-
-
----
-
-# Title
-
-&nbsp;
-
-```js
-
-```
-
-
----
-
-# Title
-
-&nbsp;
-
-```js
-
-```
-
-
----
-
-# Title
-
-&nbsp;
-
-```js
-
-```
-
-
----
-
-# Title
-
-&nbsp;
-
-```js
-
-```
-
-
----
-
-# Title
-
-&nbsp;
-
-```js
-
-```
-
-
----
-
-# Title
-
-&nbsp;
-
-```js
-
-```
-
-
----
-
-# Title
-
-&nbsp;
-
-```js
-
-```
-
-
----
-
-# Title
-
-&nbsp;
-
-```js
-
-```
-
-
----
-
-# Title
-
-&nbsp;
-
-```js
-
-```
-
-
----
-
-# Title
-
-&nbsp;
-
-```js
-
-```
-
-
----
-
-# Title
-
-&nbsp;
-
-```js
-
-```
-
-
----
-
-# Title
-
-&nbsp;
-
-```js
-
-```
-
-
----
-
-# Title
-
-&nbsp;
-
-```js
-
-```
-
-
----
-
-# Title
-
-&nbsp;
-
-```js
-
 ```
 
 
@@ -720,11 +599,8 @@ const broadcastTransaction = async (rawTx) => {
 
 
 
-```coffee
+```js
 @makevoid
 ```
 
 Applied Blockchain
-
-
-Please don't share / upload these slides on social media. Thanks.
