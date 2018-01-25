@@ -1,0 +1,60 @@
+!!!
+%html
+  %head
+    %title Title
+    %meta{:charset => "utf-8"}/
+    :css
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+
+      ol { font-size: 1.3em }
+
+      .remark-code {
+        font-size: 17px;
+      }
+
+      .remark-code-line { font-size: 1.7em }
+
+      pre.medcode { margin-left: -45px }
+
+      pre.smallcode .remark-code-line { font-size: 1.25em }
+      pre.medcode .remark-code-line { font-size: 1.4em }
+
+      .hljs.remark-code {
+        position: relative;
+        background: #fff;
+        overflow: hidden;
+        width: 100%;
+      }
+
+      iframe {
+        width: 105%; height: 550px; position: relative; top: -35px;
+      }
+
+      /*   left: -65px; */
+
+  %body
+    %textarea#source
+      :preserve
+        #{File.read "./eth-wallet-presentation.md"}
+    %script{:src => "https://gnab.github.io/remark/downloads/remark-latest.min.js"}
+      :cdata
+    :javascript
+      var slideshow = remark.create();
+
+    :javascript
+      var confirmOnPageExit = function (e)
+      {
+          e = e || window.event;
+          var message = 'shtop!';
+          return message;
+      };
+      window.onbeforeunload = confirmOnPageExit;
