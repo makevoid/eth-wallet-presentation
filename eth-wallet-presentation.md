@@ -1,3 +1,4 @@
+
 class: center, middle
 
 # Ethereum Web Wallet DIY
@@ -217,7 +218,7 @@ console.log(address)
 ```js
 const Web3 = require('web3')
 
-const web3 = new Web3("https://mainnet.infura.io")
+const web3 = new Web3("https://kovan.infura.io")
 
 ```
 
@@ -270,6 +271,8 @@ npm i --save      ethereum/web3.js#1.0
 const Web3 = require('web3')
 
 const web3 = new Web3("https://kovan.infura.io")
+// use https://mainnet.infura.io for mainnet everywhere,
+// use https://api.etherscan.io  for mainnet in all examples :)
 ```
 
 &nbsp;
@@ -287,7 +290,7 @@ const web3 = new Web3("https://kovan.infura.io")
 ```js
 const Web3 = require('web3')
 
-const provUrl  = "https://mainnet.infura.io"
+const provUrl  = "https://kovan.infura.io"
 const provider = new Web3.providers.HttpProvider(provUrl)
 
 const web3 = new Web3(provider)
@@ -310,7 +313,7 @@ const web3 = new Web3(provider)
 ```js
 const Accounts = require('web3-eth-accounts')
 
-const accounts = new Accounts()
+const accounts = new Accounts("https://kovan.infura.io")
 ```
 
 &nbsp;
@@ -350,6 +353,8 @@ https://runkit.com/makevoid/bitcore-lib-web3-accounts
 ```js
 const Accounts = require('web3-eth-accounts')
 const accounts = new Accounts()
+// note: you can omit "https://kovan.infura.io" for these steps
+// you need it later when creating/signing the transaction
 
 const account = accounts.create()
 
@@ -372,7 +377,7 @@ https://runkit.com/makevoid/web3-eth-accounts-address
 
 ```js
 const Accounts = require('web3-eth-accounts')
-const accounts = new Accounts()
+const accounts = new Accounts("https://kovan.infura.io")
 
 const account = accounts.create()
 
@@ -399,7 +404,7 @@ https://runkit.com/makevoid/web3-eth-accounts-private-key
 const fs = require('fs')
 const readFileSync = fs.readFileSync
 const Accounts = require('web3-eth-accounts')
-const accounts = new Accounts()
+const accounts = new Accounts("https://kovan.infura.io")
 
 const key = readFileSync("private-key.txt")
 
@@ -419,7 +424,7 @@ console.log(account.address)
 const fs = require('fs')
 const readFileSync = fs.readFileSync
 const Accounts = require('web3-eth-accounts')
-const accounts = new Accounts()
+const accounts = new Accounts("https://kovan.infura.io")
 
 const key = readFileSync("private-key.txt")
 
@@ -504,7 +509,7 @@ https://www.npmjs.com/package/davidshimjs-qrcodejs
 require('isomorphic-fetch')
 
 const getBalance = async (address) => {
-  const balanceUrl = `https://api.etherscan.io/api?module=account&action=balance&address=${address}&tag=latest`
+  const balanceUrl = `https://kovan.etherscan.io/api?module=account&action=balance&address=${address}&tag=latest`
   let resp = await fetch(balanceUrl)
   resp = await resp.json()
   return Number(resp['result'] || 0)
@@ -553,7 +558,7 @@ const createTx = async ({recipient, account, value}) => {
   const fs = require('fs')
   const readFileSync = fs.readFileSync
   const Accounts = require('web3-eth-accounts')
-  const accounts = new Accounts()
+  const accounts = new Accounts("https://kovan.infura.io")
 
   const key = readFileSync("private-key.txt")
   const account = accounts.privateKeyToAccount(key)
@@ -593,7 +598,7 @@ const createTx = async ({recipient, account, value}) => {
   const fs = require('fs')
   const readFileSync = fs.readFileSync
   const Accounts = require('web3-eth-accounts')
-  const accounts = new Accounts()
+  const accounts = new Accounts("https://kovan.infura.io")
 
   const key = readFileSync("private-key.txt")
   const account = accounts.privateKeyToAccount(key)
@@ -617,7 +622,7 @@ const createTx = async ({recipient, account, value}) => {
 
 &nbsp;
 
-## https://etherscan.io/pushTx
+## https://kovan.etherscan.io/pushTx
 
 (manual)
 
@@ -633,7 +638,7 @@ require('isomorphic-fetch')
 require('isomorphic-form-data')
 
 const broadcastTransaction = async (rawTx) => {
-  const broadcastUrl = "https://api.etherscan.io/api"
+  const broadcastUrl = "https://kovan.etherscan.io/api"
 
   // ...
 }
@@ -647,7 +652,7 @@ const broadcastTransaction = async (rawTx) => {
 
 ```js
 const broadcastTransaction = async (rawTx) => {
-  const broadcastUrl = "https://api.etherscan.io/api"
+  const broadcastUrl = "https://kovan.etherscan.io/api"
   const data = new FormData()
   data.append('module', 'proxy')
   data.append('action', 'eth_sendRawTransaction')
@@ -658,7 +663,7 @@ const broadcastTransaction = async (rawTx) => {
     body: data,
   })
   resp = await resp.json()
-  c.log("broadcast Tx:", resp)
+  console.log("broadcast Tx:", resp)
   return resp
 }
 ```
@@ -690,7 +695,7 @@ require('isomorphic-fetch')
 require('isomorphic-form-data')
 
 const broadcastTransaction = async (rawTx) => {
-  const broadcastUrl = "https://api.etherscan.io/api"
+  const broadcastUrl = "https://kovan.etherscan.io/api"
   const data = new FormData()
   data.append('module', 'proxy')
   data.append('action', 'eth_sendRawTransaction')
@@ -701,7 +706,7 @@ const broadcastTransaction = async (rawTx) => {
     body: data,
   })
   resp = await resp.json()
-  c.log("broadcast Tx:", resp)
+  console.log("broadcast Tx:", resp)
   return resp
 }
 
