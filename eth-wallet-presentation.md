@@ -1,22 +1,24 @@
 class: center, middle
 
-# Ethereum Web Wallet
+# Ethereum Web Wallet DIY
 
 &nbsp;
 
 &nbsp;
 
-Francesco Canessa
+**Francesco Canessa**
+
+@makevoid
+
+&nbsp;
 
 Lead Software Developer
 
-&nbsp;
-
-Applied Blockchain
+**Applied Blockchain**
 
 &nbsp;
 
-Rise London 2018 - Blockchain Week Development Workshop
+Rise London - **Blockchain Week '18** - Development Workshop
 
 ---
 
@@ -44,13 +46,20 @@ Rise London 2018 - Blockchain Week Development Workshop
 
 &nbsp;
 
+Requirement:
 
-Node installed 7.6+ - Upgrade or use github:yortus/asyncawait
+#### Node installed 7.6+
 
-https://github.com/yortus/asyncawait#6-quick-start
+&nbsp;
+
+Upgrade or use github:yortus/asyncawait
+
+#### https://github.com/yortus/asyncawait#6-quick-start
+
+&nbsp;
 
 
-Last resource is runkit (https://runkit.com)
+Alternative: Runkit (https://runkit.com)
 
 
 &nbsp;
@@ -62,11 +71,18 @@ Last resource is runkit (https://runkit.com)
 
 &nbsp;
 
-```sh
+```
 $ node -v
 
-v7.6+
+v7.6+ (at least)
+
+
+v8 is good (aim for v8.9.x)
 ```
+
+&nbsp;
+
+9 should be ok as well
 
 ---
 
@@ -75,15 +91,24 @@ v7.6+
 
 &nbsp;
 
-```
-https://runkit.com/makevoid/check-async-support
-```
+
+Check Async-Await support
+
+### https://runkit.com/makevoid/check-async-support
+
+&nbsp;
+
+if you don't have native support, you can use **github:yortus/asyncawait**
 
 ---
 
 
 
 # Hello Node
+
+&nbsp;
+
+&nbsp;
 
 &nbsp;
 
@@ -95,11 +120,28 @@ console.log("hello world")
 ---
 
 
+# Hello Bitcore-Lib
+
+&nbsp;
+
+&nbsp;
+
+
+```sh
+npm init -fy
+
+
+npm install --save bitcore-lib
+```
+
+&nbsp;
+---
+
+
 # Generate a Private Key
 
 &nbsp;
 
-You don't need to type/follow on this one
 
 ```js
 const bitcore = require('bitcore-lib')
@@ -111,7 +153,9 @@ console.log(privateKey.toString())
 
 &nbsp;
 
-https://runkit.com/makevoid/bitcore-lib-privatekey
+&nbsp;
+
+#### https://runkit.com/makevoid/bitcore-lib-privatekey
 
 &nbsp;
 
@@ -132,7 +176,9 @@ console.log(publicKey.toString())
 
 &nbsp;
 
-https://runkit.com/makevoid/bitcore-lib-address
+&nbsp;
+
+#### https://runkit.com/makevoid/bitcore-lib-address
 
 ---
 
@@ -153,9 +199,16 @@ console.log(address)
 
 &nbsp;
 
-https://runkit.com/makevoid/bitcore-lib-address
+#### https://runkit.com/makevoid/bitcore-lib-address
 
 ---
+
+# Wallet Mockup
+
+![](/img/wallet-mockup.jpg)
+
+---
+
 
 # Setup Web3
 
@@ -163,10 +216,18 @@ https://runkit.com/makevoid/bitcore-lib-address
 
 ```js
 const Web3 = require('web3')
+
 const web3 = new Web3("https://mainnet.infura.io")
+
 ```
 
-http://web3js.readthedocs.io/en/1.0/web3.html
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+### http://web3js.readthedocs.io/en/1.0/web3.html
 
 &nbsp;
 
@@ -184,7 +245,9 @@ npm i --save isomorphic-fetch
 npm i --save isomorphic-form-data
 ```
 
-optional:
+&nbsp;
+
+Optional:
 
 ```sh
 npm i --save-dev  lerna
@@ -199,8 +262,13 @@ npm i --save      ethereum/web3.js#1.0
 
 &nbsp;
 
+&nbsp;
+
+&nbsp;
+
 ```js
 const Web3 = require('web3')
+
 const web3 = new Web3("https://kovan.infura.io")
 ```
 
@@ -213,10 +281,15 @@ const web3 = new Web3("https://kovan.infura.io")
 
 &nbsp;
 
+&nbsp;
+
+
 ```js
 const Web3 = require('web3')
+
 const provUrl  = "https://mainnet.infura.io"
 const provider = new Web3.providers.HttpProvider(provUrl)
+
 const web3 = new Web3(provider)
 ```
 
@@ -229,8 +302,14 @@ const web3 = new Web3(provider)
 
 &nbsp;
 
+&nbsp;
+
+&nbsp;
+
+
 ```js
 const Accounts = require('web3-eth-accounts')
+
 const accounts = new Accounts()
 ```
 
@@ -255,6 +334,8 @@ const account = accounts.privateKeyToAccount(key)
 console.log(account.address)
 ```
 
+&nbsp;
+
 
 https://runkit.com/makevoid/bitcore-lib-web3-accounts
 
@@ -269,15 +350,22 @@ https://runkit.com/makevoid/bitcore-lib-web3-accounts
 ```js
 const Accounts = require('web3-eth-accounts')
 const accounts = new Accounts()
+
 const account = accounts.create()
+
 console.log(account.address)
 ```
+
+&nbsp;
+
+&nbsp;
+
 
 https://runkit.com/makevoid/web3-eth-accounts-address
 
 ---
 
-# Load the same key (Node) 1/2
+# Load the private key (Node) 1/2
 
 &nbsp;
 
@@ -285,18 +373,25 @@ https://runkit.com/makevoid/web3-eth-accounts-address
 ```js
 const Accounts = require('web3-eth-accounts')
 const accounts = new Accounts()
+
 const account = accounts.create()
+
 console.log(account.privateKey)
 ```
 
+&nbsp;
+
+&nbsp;
+
+Extra step: save key into `private-key.txt`
+
+&nbsp;
 
 https://runkit.com/makevoid/web3-eth-accounts-private-key
 
-Save key into `private-key.txt`
-
 ---
 
-# Load the same key (Node) 2/2
+# Load the private key (Node) 2/2
 
 &nbsp;
 
@@ -307,7 +402,9 @@ const Accounts = require('web3-eth-accounts')
 const accounts = new Accounts()
 
 const key = readFileSync("private-key.txt")
+
 const account = accounts.privateKeyToAccount(key)
+
 console.log(account.address)
 ```
 
@@ -325,36 +422,79 @@ const Accounts = require('web3-eth-accounts')
 const accounts = new Accounts()
 
 const key = readFileSync("private-key.txt")
+
 const account = accounts.privateKeyToAccount(key)
+
 console.log(account.address)
 ```
 
-re-run it - it will return the same address! :D
+
+&nbsp;
+
+run this again - notice that it will return the same address! :D
 
 
 ---
 
 # Receive Ethers
 
+&nbsp;
+
+
 https://duckduckgo.com
+
+&nbsp;
 
 !qr 0x1234...
 
+
+&nbsp;
+
+
+&nbsp;
+
+
+&nbsp;
+
+
+&nbsp;
+
+&nbsp;
+
+tip for future UI - handy QR npm package:
+
+https://www.npmjs.com/package/davidshimjs-qrcodejs
 
 ---
 
 # Check transaction on block explorer
 
 
-https://etherscan.io/address/0x1234...
+&nbsp;
+
+&nbsp;
+
+### https://etherscan.io/address/0x1234...
 
 
-&nbpsp;
+&nbsp;
 
-&nbpsp;
+&nbsp;
 
 
-(https://kovan.etherscan.io/ for testnet)
+#### https://kovan.etherscan.io/...
+
+(for testnet)
+
+---
+
+# Kovan Faucet
+
+&nbsp;
+
+&nbsp;
+
+### https://gitter.im/kovan-testnet/faucet
 
 ---
 
@@ -386,8 +526,6 @@ https://etherscan.io/apis#accounts
 ---
 
 # Create Transaction - 1/2
-
-&nbsp;
 
 ```js
 const createTx = async ({recipient, account, value}) => {
@@ -475,14 +613,20 @@ const createTx = async ({recipient, account, value}) => {
 
 &nbsp;
 
+&nbsp;
+
+&nbsp;
+
 ## https://etherscan.io/pushTx
 
-
+(manual)
 
 ---
 
 
 # Broadcast Transaction
+
+programmatically
 
 ```js
 require('isomorphic-fetch')
@@ -572,14 +716,152 @@ const broadcastTransaction = async (rawTx) => {
 
 ---
 
-# Title
+# Wallet Mockup
 
-&nbsp;
+![](/img/wallet-mockup.jpg)
 
 
 ---
 
-# Thanks!
+# Tools
+
+
+&nbsp;
+
+### - Browserify
+
+### - Babel
+
+
+&nbsp;
+
+```js
+npm i -g browserify babelify
+```
+
+---
+
+# Tools - Browserify
+
+
+&nbsp;
+
+RUN:
+
+```sh
+browserify js/index.js > js/dist/bundle.js
+```
+
+&nbsp;
+
+
+ADD:
+
+```html
+<script src="js/dist/bundle.js" charset="utf-8"></script>
+```
+
+
+---
+
+# Tools - Browserify (bonus)
+
+
+&nbsp;
+
+```js
+npm i -g watchify
+```
+
+&nbsp;
+
+RUN:
+
+```sh
+watchify js/index.js -o js/dist/bundle.js
+```
+
+---
+
+# Tools - Babel
+
+
+&nbsp;
+
+```sh
+.babelrc
+```
+
+
+&nbsp;
+
+```
+{
+  "presets": ["env"]
+}
+```
+
+---
+
+# Have fun!
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+
+
+```js
+@makevoid
+```
+
+Applied Blockchain
+
+
+---
+
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+# Few minutes left!
+
+
+
+
+---
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+# Time's up!
+
+
+---
+
+# Thanks for attending!
 
 &nbsp;
 
